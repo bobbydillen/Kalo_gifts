@@ -1,0 +1,21 @@
+{%- comment -%}
+  Renders the placeholder icon for a product type. Usage: {% render 'type-icon', type: product.type %}
+{%- endcomment -%}
+{%- liquid
+  assign icon = 'tee'
+  case type
+    when 'Hoodie'
+      assign icon = 'hoodie'
+    when 'Bottle'
+      assign icon = 'bottle'
+    when 'Tote bag'
+      assign icon = 'tote'
+    when 'Hamper'
+      assign icon = 'hamper'
+    when 'Frame'
+      assign icon = 'frame'
+    when 'Keychain'
+      assign icon = 'keychain'
+  endcase
+-%}
+{% render 'icon', name: icon %}

@@ -1,0 +1,71 @@
+{%- liquid
+  assign threshold = settings.free_shipping_threshold | times: 100
+  assign remaining = threshold | minus: cart.total_price
+-%}
+<div class="wrap cart">
+  {%- if cart.item_count == 0 -%}
+    <div class="empty">
+      <h1>Your bag is <em>empty</em></h1>
+      <a class="btn gold" href="{{ routes.all_products_collection_url }}">Browse the gifts <span aria-hidden="true">→</span></a>
+    </div>
+  {%- else -%}
+    <div class="head" style="margin-bottom:30px">
+      <span class="idx">Your bag</span>
+      <h1>Your <em>bag</em></h1>
+      <span></span>
+    </div>
+
+    {%- if settings.free_shipping_threshold > 0 -%}
+      <div class="freebar">
+        {%- if remaining > 0 -%}
+          Add {{ remaining | money_without_trailing_zeros }} more for free delivery.
+        {%- else -%}
+          You've unlocked free delivery.
+        {%- endif -%}
+        {%- assign pct = cart.total_price | times: 100 | divided_by: threshold -%}
+        <i><span style="width:{% if pct > 100 %}100{% else %}{{ pct }}{% endif %}%"></span></i>
+      </div>
+    {%- endif -%}
+
+    <form action="{{ routes.cart_url }}" method="post" novalidate>
+      {%- for item in cart.items -%}
+        <div class="line">
+          <a class="frame" href="{{ item.url }}">
+            {%- if item.image -%}{{ item.image | image_url: width: 200 | image_tag: loading: 'lazy', alt: item.product.title }}{%- endif -%}
+          </a>
+          <div>
+            <h3><a href="{{ item.url }}">{{ item.product.title }}</a></h3>
+            {%- unless item.product.has_only_default_variant -%}<p class="props">{{ item.variant.title }}</p>{%- endunless -%}
+            {%- for property in item.properties -%}
+              {%- if property.last != blank -%}<p class="props">{{ property.first }}: <b>{{ property.last }}</b></p>{%- endif -%}
+            {%- endfor -%}
+            <p class="props">
+              <label class="qty" style="display:inline-flex">
+                <input type="number" name="updates[]" value="{{ item.quantity }}" min="0" aria-label="Quantity for {{ item.product.title | escape }}" style="width:56px;text-align:center;border:0;background:transparent">
+              </label>
+              <a class="rm" href="{{ item.url_to_remove }}">Remove</a>
+            </p>
+          </div>
+          <div class="tot">{{ item.final_line_price | money_without_trailing_zeros }}</div>
+        </div>
+      {%- endfor -%}
+
+      <div class="sum">
+        <div class="note">
+          <label for="cart-note">Delivery note (landmark, or write "pickup" for Chennai collection)</label>
+          <textarea id="cart-note" name="note">{{ cart.note }}</textarea>
+        </div>
+        <div class="total">{{ cart.total_price | money_without_trailing_zeros }}</div>
+        <small class="meta">Includes GST. Delivery calculated at checkout.</small>
+        <div class="cta" style="margin-top:6px">
+          <button class="btn ghost" type="submit" name="update">Update bag</button>
+          <button class="btn gold" type="submit" name="checkout">Checkout <span aria-hidden="true">→</span></button>
+        </div>
+      </div>
+    </form>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{ "name": "Cart" }
+{% endschema %}

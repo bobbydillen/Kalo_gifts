@@ -1,0 +1,30 @@
+<section class="statement">
+  <div class="wrap">
+    <span class="idx">{{ section.settings.index }}</span>
+    <div>
+      <div class="big">{{ section.settings.text }}</div>
+      <div class="stats">
+        {%- for block in section.blocks -%}
+          <div {{ block.shopify_attributes }}><b>{{ block.settings.value }}</b><span>{{ block.settings.caption }}</span></div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Statement",
+  "settings": [
+    { "type": "text", "id": "index", "label": "Small label", "default": "(01) — Our idea" },
+    { "type": "richtext", "id": "text", "label": "Statement", "info": "Use <em> via italic for the gold word.", "default": "<p>Christmas gifts that feel <em>personal</em>, not picked off a shelf. Picked in Chennai, wrapped by hand, sent with a card in your words.</p>" }
+  ],
+  "blocks": [
+    { "type": "stat", "name": "Stat", "settings": [
+      { "type": "text", "id": "value", "label": "Big text", "default": "Free" },
+      { "type": "text", "id": "caption", "label": "Caption", "default": "Handwritten gift card with every order" }
+    ] }
+  ],
+  "presets": [ { "name": "Statement", "blocks": [ { "type": "stat" }, { "type": "stat" }, { "type": "stat" } ] } ]
+}
+{% endschema %}

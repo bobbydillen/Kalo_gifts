@@ -1,0 +1,28 @@
+<section class="editorial">
+  <div class="wrap">
+    <span class="idx">{{ section.settings.index }}</span>
+    <div><blockquote>{{ section.settings.quote }}</blockquote></div>
+    <div class="sub">
+      {%- for block in section.blocks -%}
+        <div {{ block.shopify_attributes }}><b>{{ block.settings.title }}</b><p>{{ block.settings.text }}</p></div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Editorial quote",
+  "settings": [
+    { "type": "text", "id": "index", "label": "Small label", "default": "(04) — Made with heart" },
+    { "type": "text", "id": "quote", "label": "Quote", "default": "A few handwritten words in the box say \"I thought of you\" before they even open it." }
+  ],
+  "blocks": [
+    { "type": "point", "name": "Point", "settings": [
+      { "type": "text", "id": "title", "label": "Title", "default": "A card in every box" },
+      { "type": "textarea", "id": "text", "label": "Text", "default": "Tell us what to write and we'll handwrite your message on the gift card." }
+    ] }
+  ],
+  "presets": [ { "name": "Editorial quote", "blocks": [ { "type": "point" }, { "type": "point" }, { "type": "point" } ] } ]
+}
+{% endschema %}

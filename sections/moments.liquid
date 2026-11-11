@@ -1,0 +1,46 @@
+<section class="sec" id="moments">
+  <div class="wrap">
+    <div class="head">
+      <span class="idx">{{ section.settings.index }}</span>
+      <h2>{{ section.settings.heading }} <em>{{ section.settings.heading_em }}</em></h2>
+      <p>{{ section.settings.text }}</p>
+    </div>
+    <div class="moments">
+      {%- for block in section.blocks -%}
+        <a class="moment" href="{{ block.settings.link | default: '#' }}" style="--tint:{{ block.settings.tint }}" {{ block.shopify_attributes }}>
+          <div class="art">{% render 'icon', name: block.settings.icon %}</div>
+          <div class="top"><span class="pill">{{ block.settings.pill }}</span><span class="idx">0{{ forloop.index }}</span></div>
+          <div>
+            <h3>{{ block.settings.title }} <em>{{ block.settings.title_em }}</em></h3>
+            <p>{{ block.settings.text }}</p>
+          </div>
+        </a>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Shop by moment",
+  "settings": [
+    { "type": "text", "id": "index", "label": "Small label", "default": "(02) — Shop by moment" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Who are you" },
+    { "type": "text", "id": "heading_em", "label": "Heading (gold italic)", "default": "gifting?" },
+    { "type": "textarea", "id": "text", "label": "Intro", "default": "Start with the moment. We'll show you the right pieces, every one comes with a handwritten card." }
+  ],
+  "blocks": [
+    { "type": "moment", "name": "Moment", "settings": [
+      { "type": "text", "id": "title", "label": "Title", "default": "Secret" },
+      { "type": "text", "id": "title_em", "label": "Title (gold italic)", "default": "Santa" },
+      { "type": "text", "id": "pill", "label": "Pill", "default": "Under ₹300" },
+      { "type": "textarea", "id": "text", "label": "Text" },
+      { "type": "url", "id": "link", "label": "Link" },
+      { "type": "select", "id": "icon", "label": "Icon", "default": "keychain", "options": [
+        { "value": "keychain", "label": "Keychain" }, { "value": "tee", "label": "T-shirt" }, { "value": "hoodie", "label": "Hoodie" }, { "value": "bottle", "label": "Bottle" }, { "value": "tote", "label": "Tote bag" }, { "value": "frame", "label": "Photo frame" }, { "value": "hamper", "label": "Gift hamper" } ] },
+      { "type": "color", "id": "tint", "label": "Glow colour", "default": "#A3282A" }
+    ] }
+  ],
+  "presets": [ { "name": "Shop by moment" } ]
+}
+{% endschema %}

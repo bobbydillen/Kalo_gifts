@@ -1,0 +1,4 @@
+{
+  "sections": { "main": { "type": "size-guide" } },
+  "order": ["main"]
+}

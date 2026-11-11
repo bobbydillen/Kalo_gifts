@@ -1,0 +1,4 @@
+{
+  "sections": { "main": { "type": "main-collection", "settings": { "show_chips": true, "chips_menu": "collection-chips" } } },
+  "order": ["main"]
+}

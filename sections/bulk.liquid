@@ -1,0 +1,50 @@
+<section class="sec"{% if section.settings.anchor != blank %} id="{{ section.settings.anchor }}"{% endif %}>
+  <div class="wrap">
+    <div class="bulk">
+      <div>
+        <span class="label">{{ section.settings.label }}</span>
+        <h2>{{ section.settings.heading }} <em>{{ section.settings.heading_em }}</em></h2>
+        <p>{{ section.settings.text }}</p>
+        {%- liquid
+          assign wa = settings.whatsapp_number | remove: '+' | remove: ' '
+          assign href = section.settings.link
+          if href == blank and wa != blank
+            assign msg = section.settings.wa_message | url_encode
+            assign href = 'https://wa.me/' | append: wa | append: '?text=' | append: msg
+          endif
+        -%}
+        {%- if href != blank -%}
+          <div class="cta"><a class="btn gold" href="{{ href }}" target="_blank" rel="noopener">{{ section.settings.cta }} <span aria-hidden="true">→</span></a></div>
+        {%- endif -%}
+      </div>
+      <div>
+        {%- for block in section.blocks -%}
+          <div class="tier" {{ block.shopify_attributes }}><span>{{ block.settings.range }}</span><b>{{ block.settings.discount }}</b></div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Bulk orders",
+  "settings": [
+    { "type": "text", "id": "anchor", "label": "Anchor id (for menu links)", "default": "bulk" },
+    { "type": "text", "id": "wa_message", "label": "WhatsApp opening message", "default": "Hi KALO! I'd like a bulk quote for " },
+    { "type": "text", "id": "label", "label": "Label", "default": "Offices, colleges & communities" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Gifts for the" },
+    { "type": "text", "id": "heading_em", "label": "Heading (gold italic)", "default": "whole team" },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Office Christmas gifts, Secret Santa, college fests, clubs, churches and family reunions across Chennai. Tell us what you need and we'll send a quote within a day." },
+    { "type": "text", "id": "cta", "label": "Button label", "default": "Request a bulk quote" },
+    { "type": "url", "id": "link", "label": "Button link", "info": "Leave empty to open WhatsApp using the number in theme settings." }
+  ],
+  "blocks": [
+    { "type": "tier", "name": "Discount tier", "settings": [
+      { "type": "text", "id": "range", "label": "Quantity", "default": "10–24 pieces" },
+      { "type": "text", "id": "discount", "label": "Discount", "default": "10% off" }
+    ] }
+  ],
+  "presets": [ { "name": "Bulk orders", "blocks": [ { "type": "tier" }, { "type": "tier" }, { "type": "tier" }, { "type": "tier" } ] } ]
+}
+{% endschema %}

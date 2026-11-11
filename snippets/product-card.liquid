@@ -1,0 +1,28 @@
+{%- comment -%} Usage: {% render 'product-card', product: product %} {%- endcomment -%}
+{%- liquid
+  assign badge = ''
+  for t in product.tags
+    if t contains 'badge:'
+      assign badge = t | remove: 'badge:' | strip
+    endif
+  endfor
+  assign img_alt = product.featured_image.alt | default: product.title
+-%}
+<article class="card">
+  <a class="frame" href="{{ product.url }}" aria-label="{{ product.title | escape }}">
+    {%- if badge != '' -%}<span class="tag{% if badge == 'Bestseller' %} hot{% endif %}">{{ badge }}</span>{%- endif -%}
+    {%- if product.featured_image -%}
+      {{ product.featured_image | image_url: width: 800 | image_tag: loading: 'lazy', widths: '400, 600, 800', sizes: '(min-width: 980px) 30vw, (min-width: 600px) 45vw, 92vw', alt: img_alt }}
+    {%- else -%}
+      <div class="ph">{% render 'type-icon', type: product.type %}<span>Photo coming soon</span></div>
+    {%- endif -%}
+  </a>
+  <div class="row">
+    <h3><a href="{{ product.url }}">{{ product.title }}</a></h3>
+    <span class="price">
+      {%- if product.compare_at_price > product.price -%}<s>{{ product.compare_at_price | money_without_trailing_zeros }}</s>{%- endif -%}
+      {%- if product.price_varies %}From {% endif -%}{{ product.price | money_without_trailing_zeros }}
+    </span>
+  </div>
+  <p class="meta">{{ product.description | strip_html | truncate: 90 }}</p>
+</article>

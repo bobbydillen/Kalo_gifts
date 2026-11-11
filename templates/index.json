@@ -1,0 +1,434 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "cta1_label": "Shop hampers",
+        "cta1_link": "shopify://collections/gift-hampers",
+        "cta2_label": "Shop oversized wear",
+        "cta2_link": "shopify://collections/apparel"
+      }
+    },
+    "statement": {
+      "type": "statement",
+      "blocks": {
+        "s1": {
+          "type": "stat",
+          "settings": {
+            "value": "Card included",
+            "caption": "Handwritten, in your words"
+          }
+        },
+        "s2": {
+          "type": "stat",
+          "settings": {
+            "value": "1–2 days",
+            "caption": "Delivery across Chennai"
+          }
+        },
+        "s3": {
+          "type": "stat",
+          "settings": {
+            "value": "WhatsApp",
+            "caption": "Chat to customise any gift"
+          }
+        }
+      },
+      "block_order": [
+        "s1",
+        "s2",
+        "s3"
+      ]
+    },
+    "moments": {
+      "type": "moments",
+      "blocks": {
+        "m1": {
+          "type": "moment",
+          "settings": {
+            "title": "Gift",
+            "title_em": "hampers",
+            "pill": "From ₹1,699",
+            "text": "A box with a tee or hoodie, a bottle and a card in your words.",
+            "link": "shopify://collections/gift-hampers",
+            "icon": "hamper",
+            "tint": "#A3282A"
+          }
+        },
+        "m2": {
+          "type": "moment",
+          "settings": {
+            "title": "Oversized",
+            "title_em": "wear",
+            "pill": "From ₹799",
+            "text": "Printed oversized tees and a cosy hoodie.",
+            "link": "shopify://collections/apparel",
+            "icon": "tee",
+            "tint": "#D4B373"
+          }
+        },
+        "m3": {
+          "type": "moment",
+          "settings": {
+            "title": "Bottles",
+            "title_em": "& totes",
+            "pill": "From ₹349",
+            "text": "Printed steel bottles and canvas tote bags.",
+            "link": "shopify://collections/water-bottles",
+            "icon": "bottle",
+            "tint": "#2A6A50"
+          }
+        },
+        "m4": {
+          "type": "moment",
+          "settings": {
+            "title": "Photo",
+            "title_em": "frames",
+            "pill": "From ₹599",
+            "text": "Printed photo frames with a Christmas message.",
+            "link": "shopify://collections/photo-frames",
+            "icon": "frame",
+            "tint": "#5E35A8"
+          }
+        }
+      },
+      "block_order": [
+        "m1",
+        "m2",
+        "m3",
+        "m4"
+      ],
+      "settings": {
+        "heading": "Who are you",
+        "heading_em": "gifting?",
+        "text": "Start with the moment. Every order comes with a handwritten card."
+      }
+    },
+    "editorial": {
+      "type": "editorial",
+      "blocks": {
+        "e1": {
+          "type": "point",
+          "settings": {
+            "title": "A card in every box",
+            "text": "Tell us what to write and we'll handwrite your message on the gift card. No extra charge."
+          }
+        },
+        "e2": {
+          "type": "point",
+          "settings": {
+            "title": "Gift-ready boxes",
+            "text": "Hampers arrive boxed and wrapped. Add gift wrap for ₹49 to any other gift."
+          }
+        },
+        "e3": {
+          "type": "point",
+          "settings": {
+            "title": "Packed by hand in Chennai",
+            "text": "Every order is checked, wrapped and sent by our small team."
+          }
+        }
+      },
+      "block_order": [
+        "e1",
+        "e2",
+        "e3"
+      ]
+    },
+    "how": {
+      "type": "how-it-works",
+      "blocks": {
+        "h1": {
+          "type": "step",
+          "settings": {
+            "title": "Choose",
+            "text": "Pick a gift, colour and size, and write the message you'd like on the gift card."
+          }
+        },
+        "h2": {
+          "type": "step",
+          "settings": {
+            "title": "Checkout",
+            "text": "Pay securely by UPI, card or net banking. No account needed."
+          }
+        },
+        "h3": {
+          "type": "step",
+          "settings": {
+            "title": "We pack",
+            "text": "We pack your gift by hand and write your message on the card that goes in the box."
+          }
+        },
+        "h4": {
+          "type": "step",
+          "settings": {
+            "title": "Unwrap",
+            "text": "Chennai in 1–2 days, the rest of Tamil Nadu in 3–4, the rest of India in 4–7."
+          }
+        }
+      },
+      "block_order": [
+        "h1",
+        "h2",
+        "h3",
+        "h4"
+      ]
+    },
+    "dates": {
+      "type": "delivery-dates",
+      "blocks": {
+        "d1": {
+          "type": "date",
+          "settings": {
+            "region": "Rest of India",
+            "date": "15.12",
+            "text": "Delivered in 4–7 days after packing."
+          }
+        },
+        "d2": {
+          "type": "date",
+          "settings": {
+            "region": "Tamil Nadu",
+            "date": "18.12",
+            "text": "Coimbatore, Madurai, Trichy and beyond in 3–4 days."
+          }
+        },
+        "d3": {
+          "type": "date",
+          "settings": {
+            "region": "Chennai",
+            "date": "21.12",
+            "text": "To your door in 1–2 days, or collect in person."
+          }
+        }
+      },
+      "block_order": [
+        "d1",
+        "d2",
+        "d3"
+      ]
+    },
+    "bulk": {
+      "type": "bulk",
+      "blocks": {
+        "t1": {
+          "type": "tier",
+          "settings": {
+            "range": "10–24 pieces",
+            "discount": "10% off"
+          }
+        },
+        "t2": {
+          "type": "tier",
+          "settings": {
+            "range": "25–49 pieces",
+            "discount": "15% off"
+          }
+        },
+        "t3": {
+          "type": "tier",
+          "settings": {
+            "range": "50–99 pieces",
+            "discount": "20% off"
+          }
+        },
+        "t4": {
+          "type": "tier",
+          "settings": {
+            "range": "100+ pieces",
+            "discount": "Custom quote"
+          }
+        }
+      },
+      "block_order": [
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "settings": {
+        "anchor": "bulk",
+        "wa_message": "Hi KALO! I'd like a bulk quote for ",
+        "label": "Offices, colleges & communities",
+        "heading": "Gifts for the",
+        "heading_em": "whole team",
+        "text": "Office Christmas gifts, Secret Santa, college fests, clubs, churches and family reunions across Chennai. Tell us what you need and we'll send a quote within a day.",
+        "cta": "Request a bulk quote"
+      }
+    },
+    "faq": {
+      "type": "faq",
+      "blocks": {
+        "q1": {
+          "type": "faq",
+          "settings": {
+            "question": "How long does delivery take?",
+            "answer": "<p>We pack in 2–3 days. After that, Chennai orders arrive in 1–2 days, the rest of Tamil Nadu in 3–4 days and the rest of India in 4–7 days.</p>"
+          }
+        },
+        "q2": {
+          "type": "faq",
+          "settings": {
+            "question": "How much is delivery?",
+            "answer": "<p>Chennai delivery is ₹40 and the rest of India is ₹79. Delivery is free on orders over ₹999. Checkout works it out from your PIN code.</p>"
+          }
+        },
+        "q3": {
+          "type": "faq",
+          "settings": {
+            "question": "How do I pay?",
+            "answer": "<p>At checkout by UPI (GPay, PhonePe, Paytm), card or net banking. Your order is confirmed as soon as you pay.</p>"
+          }
+        },
+        "q4": {
+          "type": "faq",
+          "settings": {
+            "question": "How does the gift card work?",
+            "answer": "<p>Type your message in the gift card box on the product page. We handwrite it on a card and put it in the box. It's free, and you can send a different message with each gift.</p>"
+          }
+        },
+        "q5": {
+          "type": "faq",
+          "settings": {
+            "question": "Can I return or exchange?",
+            "answer": "<p>If anything arrives damaged, message us within 48 hours with a photo and we'll replace it.</p>"
+          }
+        },
+        "q6": {
+          "type": "faq",
+          "settings": {
+            "question": "Can I collect in Chennai?",
+            "answer": "<p>Yes. Write \"pickup\" in the delivery note and we'll arrange a time and place on WhatsApp.</p>"
+          }
+        },
+        "q7": {
+          "type": "faq",
+          "settings": {
+            "question": "Can I customise a hamper or order something different?",
+            "answer": "<p>Yes. Tap Customise on WhatsApp on any hamper, tee, hoodie or tote and tell us what you have in mind: extra items, a different mix, a bigger order. We'll confirm the details and the price with you on WhatsApp.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "q5",
+        "q6",
+        "q7"
+      ]
+    },
+    "hampers": {
+      "type": "featured-collection",
+      "settings": {
+        "anchor": "hampers",
+        "index": "(03) — Gift hampers",
+        "heading": "Ready to",
+        "heading_em": "gift",
+        "text": "A box with printed wear, a bottle and a handwritten card. Want something different? Customise it on WhatsApp.",
+        "collection": "gift-hampers",
+        "limit": 3
+      }
+    },
+    "apparel": {
+      "type": "featured-collection",
+      "settings": {
+        "anchor": "shop",
+        "index": "(04) — Oversized wear",
+        "heading": "Tees &",
+        "heading_em": "hoodie",
+        "text": "Printed oversized tees and a cosy hoodie, easy to gift on their own.",
+        "collection": "apparel",
+        "limit": 6
+      }
+    },
+    "bottles": {
+      "type": "featured-collection",
+      "settings": {
+        "anchor": "bottles",
+        "index": "(05) — Bottles & totes",
+        "heading": "Bottles with",
+        "heading_em": "a message",
+        "text": "Printed steel water bottles, each pairing a playful line with a verse, plus canvas totes.",
+        "collection": "water-bottles",
+        "limit": 6
+      }
+    },
+    "totes": {
+      "type": "featured-collection",
+      "settings": {
+        "anchor": "totes",
+        "index": "",
+        "heading": "Tote",
+        "heading_em": "bags",
+        "text": "Printed canvas totes, roomy and light.",
+        "collection": "tote-bags",
+        "limit": 3
+      }
+    },
+    "custom": {
+      "type": "bulk",
+      "settings": {
+        "anchor": "custom",
+        "wa_message": "Hi KALO! I'd like to customise a gift: ",
+        "label": "Custom gifts",
+        "heading": "Make it",
+        "heading_em": "yours",
+        "text": "A hamper built around your person, a different tee, extra items or a gift for the whole team. Tell us on WhatsApp and we'll make it.",
+        "cta": "Customise on WhatsApp"
+      },
+      "blocks": {
+        "c1": {
+          "type": "tier",
+          "settings": {
+            "range": "Custom hampers",
+            "discount": "You pick the items"
+          }
+        },
+        "c2": {
+          "type": "tier",
+          "settings": {
+            "range": "Different design or colour",
+            "discount": "Just ask"
+          }
+        },
+        "c3": {
+          "type": "tier",
+          "settings": {
+            "range": "Gift card",
+            "discount": "Free, handwritten"
+          }
+        },
+        "c4": {
+          "type": "tier",
+          "settings": {
+            "range": "Team & bulk orders",
+            "discount": "Ask for a quote"
+          }
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2",
+        "c3",
+        "c4"
+      ]
+    }
+  },
+  "order": [
+    "hero",
+    "statement",
+    "moments",
+    "hampers",
+    "apparel",
+    "bottles",
+    "totes",
+    "custom",
+    "editorial",
+    "how",
+    "dates",
+    "bulk",
+    "faq"
+  ]
+}

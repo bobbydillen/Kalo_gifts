@@ -1,0 +1,31 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "KALO",
+    "theme_version": "1.0.0",
+    "theme_author": "KALO Gifts",
+    "theme_documentation_url": "https://help.shopify.com/manual/online-store/themes",
+    "theme_support_url": "https://help.shopify.com/"
+  },
+  {
+    "name": "Contact and social",
+    "settings": [
+      { "type": "text", "id": "whatsapp_number", "label": "WhatsApp number", "info": "With country code, digits only. Example: 919876543210" },
+      { "type": "text", "id": "contact_email", "label": "Contact email" },
+      { "type": "text", "id": "instagram_handle", "label": "Instagram handle", "default": "kalogifts", "info": "Without the @" }
+    ]
+  },
+  {
+    "name": "Shipping messaging",
+    "settings": [
+      { "type": "number", "id": "free_shipping_threshold", "label": "Free delivery over (₹)", "default": 999, "info": "Only used for the progress bar in the cart. Set the real rates in Settings > Shipping and delivery." }
+    ]
+  },
+  {
+    "name": "Brand",
+    "settings": [
+      { "type": "image_picker", "id": "favicon", "label": "Favicon (square PNG, 32x32 or larger)" },
+      { "type": "image_picker", "id": "share_image", "label": "Default social sharing image" }
+    ]
+  }
+]

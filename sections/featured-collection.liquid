@@ -1,0 +1,36 @@
+<section class="sec"{% if section.settings.anchor != blank %} id="{{ section.settings.anchor }}"{% endif %}>
+  <div class="wrap">
+    <div class="head">
+      <span class="idx">{{ section.settings.index }}</span>
+      <h2>{{ section.settings.heading }} <em>{{ section.settings.heading_em }}</em></h2>
+      <p>{{ section.settings.text }}</p>
+    </div>
+    {%- assign col = section.settings.collection -%}
+    {%- if col != blank and col.products_count > 0 -%}
+      <div class="grid">
+        {%- for product in col.products limit: section.settings.limit -%}
+          {% render 'product-card', product: product %}
+        {%- endfor -%}
+      </div>
+      <div class="pager"><a class="btn ghost" href="{{ col.url }}">View all <span aria-hidden="true">→</span></a></div>
+    {%- else -%}
+      <p class="meta">Choose a collection in the theme editor.</p>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured collection",
+  "settings": [
+    { "type": "text", "id": "anchor", "label": "Anchor id (for menu links)", "default": "shop" },
+    { "type": "text", "id": "index", "label": "Small label", "default": "(03) — The collection" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Gifts for" },
+    { "type": "text", "id": "heading_em", "label": "Heading (gold italic)", "default": "everyone" },
+    { "type": "textarea", "id": "text", "label": "Intro", "default": "Cosy hoodies, festive tees and little keepsakes for family, friends and colleagues. Every order comes with a handwritten gift card." },
+    { "type": "collection", "id": "collection", "label": "Collection" },
+    { "type": "range", "id": "limit", "label": "Products to show", "min": 3, "max": 12, "step": 3, "default": 9 }
+  ],
+  "presets": [ { "name": "Featured collection" } ]
+}
+{% endschema %}

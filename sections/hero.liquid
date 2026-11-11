@@ -1,0 +1,54 @@
+<section class="hero">
+  <div class="glow"></div>
+  {%- if section.settings.image != blank -%}
+    <div class="art">{{ section.settings.image | image_url: width: 900 | image_tag: loading: 'eager', fetchpriority: 'high', alt: section.settings.image.alt | default: 'KALO Christmas gifts' }}</div>
+  {%- endif -%}
+  <div class="ui wrap">
+    <div><span class="label">{{ section.settings.eyebrow }}</span></div>
+    <h1>
+      <span class="ln">{{ section.settings.line1 }}</span>
+      <span class="ln ln2"><span class="shine">{{ section.settings.line2 }}</span></span>
+      <span class="ln ln3">{{ section.settings.line3 }}</span>
+    </h1>
+    <div class="bottom">
+      <div>
+        <p class="lede">{{ section.settings.lede }}</p>
+        <div class="cta">
+          {%- if section.settings.cta1_label != blank -%}<a class="btn gold" href="{{ section.settings.cta1_link }}">{{ section.settings.cta1_label }} <span aria-hidden="true">→</span></a>{%- endif -%}
+          {%- if section.settings.cta2_label != blank -%}<a class="btn ghost" href="{{ section.settings.cta2_link }}">{{ section.settings.cta2_label }}</a>{%- endif -%}
+        </div>
+      </div>
+      {%- if section.settings.countdown != blank -%}
+        <div class="side">
+          <div class="clock4" role="timer" aria-label="Countdown to Christmas Day" data-countdown="{{ section.settings.countdown }}">
+            <div><b data-d>--</b><span>Days</span></div>
+            <div><b data-h>--</b><span>Hours</span></div>
+            <div><b data-m>--</b><span>Min</span></div>
+            <div><b data-s>--</b><span>Sec</span></div>
+          </div>
+          <p class="cd-note" data-cd-note>until Christmas morning</p>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "The Christmas Edit · 2026 · Chennai, India" },
+    { "type": "text", "id": "line1", "label": "Line 1", "default": "Merry" },
+    { "type": "text", "id": "line2", "label": "Line 2 (gold)", "default": "Christmas" },
+    { "type": "text", "id": "line3", "label": "Line 3", "default": "from KALO Gifts" },
+    { "type": "textarea", "id": "lede", "label": "Intro", "default": "Printed oversized tees and hoodies, steel bottles, tote bags and gift hampers, packed by hand in Chennai with a handwritten card from you." },
+    { "type": "text", "id": "cta1_label", "label": "Primary button label", "default": "Shop the edit" },
+    { "type": "url", "id": "cta1_link", "label": "Primary button link" },
+    { "type": "text", "id": "cta2_label", "label": "Secondary button label", "default": "Find a gift" },
+    { "type": "url", "id": "cta2_link", "label": "Secondary button link" },
+    { "type": "text", "id": "countdown", "label": "Countdown target", "default": "2026-12-25T00:00:00+05:30", "info": "ISO date and time. Leave empty to hide the countdown." },
+    { "type": "image_picker", "id": "image", "label": "Hero photo (optional)" }
+  ],
+  "presets": [ { "name": "Hero" } ]
+}
+{% endschema %}

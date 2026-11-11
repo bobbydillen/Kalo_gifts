@@ -1,0 +1,38 @@
+<section class="sec" id="dates">
+  <div class="wrap">
+    <div class="head">
+      <span class="idx">{{ section.settings.index }}</span>
+      <h2>{{ section.settings.heading }} <em>{{ section.settings.heading_em }}</em></h2>
+      <p>{{ section.settings.text }}</p>
+    </div>
+    <div class="dates">
+      {%- for block in section.blocks -%}
+        <div class="date" {{ block.shopify_attributes }}>
+          <span class="m">{{ block.settings.region }}</span>
+          <div class="d">{{ block.settings.date }}</div>
+          <p>{{ block.settings.text }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Delivery cut-off dates",
+  "settings": [
+    { "type": "text", "id": "index", "label": "Small label", "default": "(07) — Christmas delivery" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "In time for" },
+    { "type": "text", "id": "heading_em", "label": "Heading (gold italic)", "default": "the 25th" },
+    { "type": "textarea", "id": "text", "label": "Intro", "default": "We pack within 2–3 days. Order by these dates to have your gifts under the tree." }
+  ],
+  "blocks": [
+    { "type": "date", "name": "Region", "settings": [
+      { "type": "text", "id": "region", "label": "Region", "default": "Chennai" },
+      { "type": "text", "id": "date", "label": "Order-by date", "default": "21.12" },
+      { "type": "textarea", "id": "text", "label": "Text" }
+    ] }
+  ],
+  "presets": [ { "name": "Delivery cut-off dates", "blocks": [ { "type": "date" }, { "type": "date" }, { "type": "date" } ] } ]
+}
+{% endschema %}

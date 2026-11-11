@@ -1,0 +1,115 @@
+{%- liquid
+  assign current_variant = product.selected_or_first_available_variant
+  assign gift_message = true
+  if product.tags contains 'no-gift-message'
+    assign gift_message = false
+  endif
+  assign whatsapp_only = false
+  if product.tags contains 'whatsapp-only'
+    assign whatsapp_only = true
+  endif
+  assign customisable = false
+  if product.tags contains 'customisable' or whatsapp_only
+    assign customisable = true
+  endif
+  assign wa_number = settings.whatsapp_number | remove: '+' | remove: ' '
+  assign wa_text = "Hi KALO! I'd like to customise: " | append: product.title | append: ' ' | append: shop.url | append: product.url
+  assign wa_encoded = wa_text | url_encode
+  assign wa_href = 'https://wa.me/' | append: wa_number | append: '?text=' | append: wa_encoded
+-%}
+
+<div class="wrap pdp">
+  <div class="gallery">
+    <div class="frame">
+      {%- if product.featured_image -%}
+        {{ product.featured_image | image_url: width: 1200 | image_tag: loading: 'eager', fetchpriority: 'high', widths: '600, 900, 1200', sizes: '(min-width: 860px) 50vw, 100vw', alt: product.featured_image.alt | default: product.title }}
+      {%- else -%}
+        <div class="ph">{% render 'type-icon', type: product.type %}<span>Photo coming soon</span></div>
+      {%- endif -%}
+    </div>
+    {%- if product.images.size > 1 -%}
+      <div class="thumbs">
+        {%- for image in product.images limit: 5 -%}
+          <button type="button" data-thumb data-src="{{ image | image_url: width: 1200 }}" aria-label="Show photo {{ forloop.index }}">
+            {{ image | image_url: width: 160 | image_tag: loading: 'lazy', alt: image.alt | default: product.title }}
+          </button>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+
+  <div class="info">
+    {%- if product.type != blank -%}<span class="label">{{ product.type }}</span>{%- endif -%}
+    <h1>{{ product.title }}</h1>
+    <div class="price" data-price>{{ current_variant.price | money_without_trailing_zeros }}</div>
+    <small class="meta">Price includes GST. Delivery calculated at checkout.</small>
+
+    <div class="desc">{{ product.description }}</div>
+
+    {%- form 'product', product, data-product-form: '' -%}
+      <input type="hidden" name="id" value="{{ current_variant.id }}">
+
+      {%- unless product.has_only_default_variant -%}
+        {%- for option in product.options_with_values -%}
+          <fieldset class="opt">
+            <legend>{{ option.name }}{% if option.name contains 'ize' and product.type != 'Frame' %} · <a href="{{ pages['size-guide'].url }}" style="text-transform:none;letter-spacing:0;color:var(--faint)">Size guide</a>{% endif %}</legend>
+            <div class="vals">
+              {%- for value in option.values -%}
+                <input type="radio" id="opt-{{ option.position }}-{{ forloop.index }}" name="option-{{ option.position }}" value="{{ value | escape }}" {% if option.selected_value == value %}checked{% endif %}>
+                <label for="opt-{{ option.position }}-{{ forloop.index }}">{{ value }}</label>
+              {%- endfor -%}
+            </div>
+          </fieldset>
+        {%- endfor -%}
+      {%- endunless -%}
+
+      {%- if gift_message and whatsapp_only == false -%}
+        <div class="field">
+          <label for="gift-message">Gift card message (free, optional)</label>
+          <textarea id="gift-message" name="properties[Gift message]" rows="3" maxlength="200" placeholder="Merry Christmas, Anna! With love, Joe" autocomplete="off"></textarea>
+          <small>We handwrite this on the card that goes in the box. Up to 200 characters. If you're ordering several gifts, add each message separately.</small>
+        </div>
+      {%- endif -%}
+
+      {%- unless whatsapp_only -%}
+        <div class="buyrow">
+          <div class="qty">
+            <button type="button" data-step="-1" aria-label="Decrease quantity">−</button>
+            <input type="number" name="quantity" value="1" min="1" data-qty aria-label="Quantity">
+            <button type="button" data-step="1" aria-label="Increase quantity">+</button>
+          </div>
+          <button class="btn gold block" type="submit" data-add {% unless current_variant.available %}disabled{% endunless %}><span>{% if current_variant.available %}Add to bag{% else %}Sold out{% endif %}</span></button>
+        </div>
+      {%- endunless -%}
+    {%- endform -%}
+
+    {%- if customisable -%}
+      <div class="custom-cta">
+        {%- if wa_number != blank -%}
+          <a class="btn {% if whatsapp_only %}gold{% else %}ghost{% endif %} block" data-wa="{{ wa_number }}" data-wa-title="{{ product.title | escape }}" data-wa-url="{{ shop.url }}{{ product.url }}" href="{{ wa_href }}" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg>
+            <span>Customise on WhatsApp</span>
+          </a>
+        {%- else -%}
+          <p class="meta">Add your WhatsApp number in Theme settings to enable the Customise button.</p>
+        {%- endif -%}
+        <small>{% if whatsapp_only %}Made to order. Send us your photo and your words, and we'll share a preview before we make it.{% else %}Want a different design, extra items or a bulk order? Chat with us and we'll make it yours.{% endif %}</small>
+      </div>
+    {%- endif -%}
+
+    <div class="assure">
+      {%- if whatsapp_only == false and gift_message -%}<div><b>Gift card included.</b> Add a message above and we'll write it on the card in the box.</div>{%- endif -%}
+      <div><b>Packed in 2–3 days.</b> Chennai delivery 1–2 days, Tamil Nadu 3–4, rest of India 4–7.</div>
+      <div><b>Damaged on arrival?</b> Message us within 48 hours with a photo and we'll replace it.</div>
+    </div>
+  </div>
+</div>
+
+<script type="application/json" data-product-json>{{ product | json }}</script>
+{{ product | structured_data }}
+
+{% schema %}
+{
+  "name": "Product"
+}
+{% endschema %}
